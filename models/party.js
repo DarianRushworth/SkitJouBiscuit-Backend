@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       party.hasMany(models.comments)
       party.belongsToMany(models.user, {
-        through: "userParty",
+        through: "userParties",
         foreignKey: "partyId",
       })
     }
