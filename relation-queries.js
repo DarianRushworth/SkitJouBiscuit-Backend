@@ -62,4 +62,4 @@ async function findUserParties(id){
         console.log(error.message)
     }
 }
-findUserParties(1)
+// findUserParties(1)
