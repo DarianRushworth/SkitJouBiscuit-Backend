@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      party.hasMany(models.comments)
+      party.belongsToMany(models.user, {
+        through: "userParty",
+        foreignKey: "partyId",
+      })
     }
   };
   party.init({
