@@ -9,43 +9,50 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       eventName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       image: {
         type: Sequelize.STRING
       },
       month: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       duration: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       accomodation: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       lineUp: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       ticketLink: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       rules: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       extraInfo: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       covidClosure: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       continent: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       country: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       city: {
         type: Sequelize.STRING

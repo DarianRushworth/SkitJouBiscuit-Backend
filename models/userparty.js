@@ -14,8 +14,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   userParty.init({
-    userId: DataTypes.INTEGER,
-    partyId: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
+    },
+    partyId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "party",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
+    }
   }, {
     sequelize,
     modelName: 'userParty',

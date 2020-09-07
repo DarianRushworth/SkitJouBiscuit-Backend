@@ -14,9 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   comment.init({
-    input: DataTypes.TEXT,
-    userId: DataTypes.INTEGER,
-    partyId: DataTypes.INTEGER
+    input: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    },
+    partyId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "party",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    }
   }, {
     sequelize,
     modelName: 'comment',

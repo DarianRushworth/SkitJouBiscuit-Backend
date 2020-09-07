@@ -9,13 +9,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       input: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "user",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       partyId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "party",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       createdAt: {
         allowNull: false,

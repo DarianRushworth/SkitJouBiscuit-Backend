@@ -14,20 +14,55 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   party.init({
-    eventName: DataTypes.STRING,
-    image: DataTypes.STRING,
-    month: DataTypes.STRING,
-    duration: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    accomodation: DataTypes.TEXT,
-    lineUp: DataTypes.TEXT,
-    ticketLink: DataTypes.STRING,
-    rules: DataTypes.TEXT,
-    extraInfo: DataTypes.TEXT,
-    covidClosure: DataTypes.BOOLEAN,
-    continent: DataTypes.STRING,
-    country: DataTypes.STRING,
-    city: DataTypes.STRING
+    eventName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING,
+    },
+    month: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    duration: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    accomodation: {
+      type: DataTypes.TEXT,
+    },
+    lineUp: {
+      type: DataTypes.TEXT,
+    },
+    ticketLink: {
+      type: DataTypes.STRING,
+    },
+    rules: {
+      type: DataTypes.TEXT,
+    },
+    extraInfo: {
+      type: DataTypes.TEXT,
+    },
+    covidClosure: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    continent: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+    }
   }, {
     sequelize,
     modelName: 'party',
