@@ -1,7 +1,6 @@
 const User = require("./models").user
 const Comment = require("./models").comment
 const Parties = require("./models").party
-const UserParty = require("./models").userParty
 
 async function findUsers(){
     try{
