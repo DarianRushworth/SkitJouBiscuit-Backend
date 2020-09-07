@@ -33,7 +33,7 @@ module.exports = {
           input: `
           Throw all the covid in the fire and call it Burning Covid Festival!!`,
           userId: 2,
-          partyId: 7,
+          partyId: 8,
           updatedAt: new Date(),
           createdAt: new Date(),
         }
