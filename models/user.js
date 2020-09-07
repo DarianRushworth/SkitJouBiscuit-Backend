@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    isEventOwner: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     }
   }, {
     sequelize,
