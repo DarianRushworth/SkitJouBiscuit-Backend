@@ -34,7 +34,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       ticketLink: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       rules: {
         type: Sequelize.TEXT,

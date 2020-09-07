@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
     },
     ticketLink: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     rules: {
       type: DataTypes.TEXT,
