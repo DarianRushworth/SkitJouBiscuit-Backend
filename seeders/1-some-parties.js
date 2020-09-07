@@ -306,6 +306,7 @@ module.exports = {
           
           Glamping Ticket:
           https://www.starticket.ch/de/tickets/burning-mountain-festival-2020-20200625-1800-20200626-1700-festivalgelande-praschitsch-zernez`,
+          covidClosure: false,
           continent: "Europe",
           country: "Switzerland",
           city: "Zernez",
