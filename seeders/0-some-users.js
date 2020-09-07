@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         fullName: "Kristina Matthews",
-        favoriteArtist: "Undercover",\
+        favoriteArtist: "Undercover",
         email: "kTina@gmail.com",
         password: bcrypt.hashSync("DariAnne", SALT_ROUNDS),
         createdAt: new Date(),
