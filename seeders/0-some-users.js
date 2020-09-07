@@ -12,7 +12,7 @@ module.exports = {
         favoriteArtist: "Day Din",
         email: "darian@gmail.com",
         password: bcrypt.hashSync("password", SALT_ROUNDS),
-        isEventOnwer: true,
+        isEventOwner: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -21,7 +21,7 @@ module.exports = {
         favoriteArtist: "Undercover",
         email: "kTina@gmail.com",
         password: bcrypt.hashSync("DariAnne", SALT_ROUNDS),
-        isEventOnwer: false,
+        isEventOwner: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       }
