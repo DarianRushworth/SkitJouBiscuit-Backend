@@ -97,7 +97,7 @@ module.exports = {
           That way you can meet other people in the same situation and form connections quickly. There will be a community lounge space 
           for all solo campers to chill.
           `,
-          LineUp: `
+          lineUp: `
           OPIOU || LAI E NI I E TUFF GUY || SHOCKONE || GROUCH || MOIEZ || SENSEIN I || ZEKE BEAIS || GODLANDS || MADE IN PARIS || OKA || WONGO || TRUTH || SIACE CADE I || SPOONBILL || LO’99 || K+LAB || FLOWIDUS and many more...
           `,
           ticketLink: "https://www.rabbitseatlettuce.com.au/?fbclid=IwAR1aLulsmyIinqnlSLolTIJJI4DbjLjGRKM84gvkvSor8jymPUaMoJ0PdPs",
