@@ -3,8 +3,38 @@ const authMiddleware = require("../auth/middleware")
 
 const Party = require("../models").party
 const Comment = require("../models").comment
+const User = require("../models").user
 
 const router = new Router()
+
+router.get(
+    "/:id/favored",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const partyIdNeeded = parseInt(req.params.id)
+            if(!partyIdNeeded){
+                res.status(400).send("Oops seemd the URL malfunctioned, pleae go back refresh and try again.")
+            }
+
+            const userFavoredParty = await Party.findByPk(partyIdNeeded,{
+                include: [User],
+            })
+            if(!userFavoredParty){
+                res.status(404).send("It seems no one likes this event, be the first!!")
+            } else {
+                const users = userFavoredParty.users.map(user => {
+                    delete user.dataValues["password"]
+                    return user.dataValues
+                })
+                res.status(202).send(users)
+            }
+
+        } catch(error){
+            next(error)
+        }
+    }
+)
 
 router.get(
     "/:id/comments",
