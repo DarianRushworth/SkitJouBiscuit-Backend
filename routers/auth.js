@@ -9,6 +9,53 @@ const Parties = require("../models").party
 const router = new Router()
 
 router.post(
+    "/signup",
+    async(req, res, next) => {
+        try{
+        const { 
+            fullName, 
+            favoriteArtist, 
+            email, 
+            password, 
+            isEventOwner 
+        } = req.body
+        if(!fullName || !email || !password || !isEventOwner){
+            res.status(400).send("Please provide: Full-Name, Email, Password and if you are an Event Owner.")
+        }
+
+        const favArtist = favoriteArtist
+                        ? favoriteArtist
+                        : "None"
+
+        const newUser = await User.create({
+            fullName,
+            favoriteArtist: favArtist,
+            email,
+            password: bcrypt.hashSync(password, SALT_ROUNDS),
+            isEventOwner,
+        })
+        if(!newUser){
+            res.status(400).send("Oops something went wrong whilst trying to create your account, please retry.")
+        } else {
+            delete newUser.dataValues["password"]
+            const token = toJWT({userId: newUser.id})
+            res.status(201).send({
+                token,
+                ...newUser.dataValues
+            })
+        }
+
+        } catch(error){
+            if (error.name === "SequelizeUniqueConstraintError") {
+                return res
+                  .status(400)
+                  .send({ message: "There is an existing account with this email" })
+              }
+        }
+    }
+)
+
+router.post(
     "/login",
     async(req, res, next) => {
         
