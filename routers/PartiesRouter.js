@@ -11,21 +11,32 @@ router.get(
     authMiddleware,
     async(req, res, next) => {
         try{
+            const limit = req.query.limit || 3
+            const offset = req.query.offset || 0
+
             const partyIdNeeded = parseInt(req.params.id)
             if(!partyIdNeeded){
                 res.status(400).send("Oops, looks like the URL malfunctioned, go back refresh and try again.")
             }
 
-            const partyComments = await Comment.findAll({
+            const partyComments = await Comment.findAndCountAll({
                 where: {
                     partyId: partyIdNeeded,
+                },
+                limit,
+                offset,
+            })
+
+            .then((result) => {
+                if(!result){
+                    res.status(404).send("Seems there aren't any comments, please be the first.")
+                } else {
+                    res.status(202).send({
+                        comments: result.rows,
+                        total: result.count,
+                    })
                 }
             })
-            if(!partyComments){
-                res.status(404).send("Seems there aren't any comments, please be the first.")
-            } else {
-                res.status(202).send(partyComments)
-            }
 
         } catch(error){
             next(error)
