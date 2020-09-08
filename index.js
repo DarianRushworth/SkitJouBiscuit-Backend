@@ -3,6 +3,8 @@ const loggerMiddleware = require("morgan")
 const corsMiddleware = require("cors")
 const { PORT } = require("./config/constants")
 
+const partiesRouter = require("./routers/PartiesRouter")
+
 const app = express()
 
 app.use(loggerMiddleware("dev"))
@@ -17,6 +19,8 @@ if (process.env.DELAY) {
       setTimeout(() => next(), parseInt(process.env.DELAY))
     })
 }
+
+app.use("/parties", partiesRouter)
 
 app.listen(
     PORT, 
