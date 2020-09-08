@@ -4,6 +4,7 @@ const authMiddleware = require("../auth/middleware")
 const Party = require("../models").party
 const Comment = require("../models").comment
 const User = require("../models").user
+const UserParties = require("../models").userParty
 
 const router = new Router()
 
@@ -30,6 +31,33 @@ router.post(
             })
 
             res.status(202).send(newComment)
+
+        } catch(error){
+            next(error)
+        }
+    }
+)
+
+router.post(
+    "/:id/newFavored",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const userIdNeeded = req.user.id
+            const partyIdNeeded = parseInt(req.params.id)
+            if(!userIdNeeded || !partyIdNeeded){
+                res.status(400).send("Oops it seems something malfunctioned, please go back, refresh and try again.")
+            }
+
+            const newFavored = await UserParties.create({
+                userId: userIdNeeded,
+                partyId: partyIdNeeded,
+            })
+            if(!newFavored){
+                res.status(404).send("it seems you couldn't favorite this party, its okay you can try again.")
+            } else {
+                res.status(202).send(newFavored)
+            }
 
         } catch(error){
             next(error)
