@@ -5,7 +5,6 @@ const Parties = require("../models").party
 async function auth(req, res, next) {
   const auth =
     req.headers.authorization && req.headers.authorization.split(" ")
-
   if (!auth || !auth[0] === "Bearer" || !auth[1]) {
     res.status(401).send({
       message:
@@ -15,7 +14,7 @@ async function auth(req, res, next) {
 
   try {
     const data = toData(auth[1])
-    const user = await User.findByPk(data.userId,{
+    const user = await User.findByPk(data.userid,{
       include: [Parties]
     })
     if (!user) {

@@ -1,8 +1,69 @@
 const { Router } = require("express")
+const authMiddleware = require("../auth/middleware")
 
 const Party = require("../models").party
 
 const router = new Router()
+
+router.post(
+    "/new",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const ownerCheck = req.user.isEventOwner
+            if(!ownerCheck){
+                res.status(401).send("Sorry, but only Event Owners can see and post on this page.")
+            }
+
+            const {
+                eventName,
+                image,
+                month,
+                duration,
+                description,
+                accomodation,
+                lineUp,
+                ticketLink,
+                rules,
+                extraInfo,
+                covidClosure,
+                continent,
+                country,
+                city,
+            } = req.body
+            if(
+                !eventName || !month || !duration ||
+                !description || !covidClosure || !continent ||
+                !country
+            ){
+                res.status(400).send("Please provide: Event Name, Month with Year, Duration, Description, Covid Closure, Continent and Country.")
+            }
+            
+            const newParty = await Party.create({
+                eventName,
+                image,
+                month,
+                duration,
+                description,
+                accomodation,
+                lineUp,
+                ticketLink,
+                rules,
+                extraInfo,
+                covidClosure,
+                continent,
+                country,
+                city,
+            })
+
+            res.status(201).send(newParty)
+
+        } catch(error){
+        next(error)
+        }
+    }
+
+)
 
 router.get(
     "/:id",
