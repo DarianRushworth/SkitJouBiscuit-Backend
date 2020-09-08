@@ -7,6 +7,36 @@ const User = require("../models").user
 
 const router = new Router()
 
+router.post(
+    "/:id/newComment",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const userIdNeeded = req.user.id
+            const partyIdNeeded = parseInt(req.params.id)
+            if(!userIdNeeded || !partyIdNeeded){
+                res.status(400).send("Oops, something malfunctioned, please refresh and try again")
+            }
+
+            const { input } = req.body
+            if(!input){
+                res.status(404).send("Please fill in a comment to continue.")
+            }
+
+            const newComment = await Comment.create({
+                input,
+                userId: userIdNeeded,
+                partyId: partyIdNeeded,
+            })
+
+            res.status(202).send(newComment)
+
+        } catch(error){
+            next(error)
+        }
+    }
+)
+
 router.get(
     "/:id/favored",
     authMiddleware,
