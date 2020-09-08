@@ -2,8 +2,36 @@ const { Router } = require("express")
 const authMiddleware = require("../auth/middleware")
 
 const Party = require("../models").party
+const Comment = require("../models").comment
 
 const router = new Router()
+
+router.get(
+    "/:id/comments",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const partyIdNeeded = parseInt(req.params.id)
+            if(!partyIdNeeded){
+                res.status(400).send("Oops, looks like the URL malfunctioned, go back refresh and try again.")
+            }
+
+            const partyComments = await Comment.findAll({
+                where: {
+                    partyId: partyIdNeeded,
+                }
+            })
+            if(!partyComments){
+                res.status(404).send("Seems there aren't any comments, please be the first.")
+            } else {
+                res.status(202).send(partyComments)
+            }
+
+        } catch(error){
+            next(error)
+        }
+    }
+)
 
 router.post(
     "/new",
