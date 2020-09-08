@@ -87,5 +87,50 @@ router.post(
     }
 )
 
+router.patch(
+    "/user",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const userIdNeeded = req.user.id
+            const userPasswordNeeded = req.user.password
+            if(!userIdNeeded || !userPasswordNeeded){
+                res.status(400).send("Oops it seems something malfunctioned, please refresh and try again.")
+            }
+
+            const {
+                fullName,
+                favoriteArtist,
+                email,
+                isEventOwner,
+            } = req.body
+
+            const updateUser = await User.update({
+                fullName,
+                favoriteArtist,
+                email,
+                isEventOwner
+            },{
+                where:{
+                    id: userIdNeeded,
+                }
+            })
+
+            const sendUser = await User.findByPk(userIdNeeded,{
+                include: [Parties]
+            })
+            if(!updateUser || !sendUser){
+                res.status(404).send("It seems your profile couldn't be update, go back, refresh and try again.")
+            } else {
+                delete sendUser.dataValues["password"]
+                res.status(202).send({...sendUser.dataValues})
+            }
+
+        } catch(error){
+        next(error)
+        }
+    }
+)
+
 
 module.exports = router
