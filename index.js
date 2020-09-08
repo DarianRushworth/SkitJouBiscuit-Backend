@@ -3,6 +3,7 @@ const loggerMiddleware = require("morgan")
 const corsMiddleware = require("cors")
 const { PORT } = require("./config/constants")
 
+const Auth = require("./routers/auth")
 const partiesRouter = require("./routers/PartiesRouter")
 
 const app = express()
@@ -21,6 +22,8 @@ if (process.env.DELAY) {
 }
 
 app.use("/parties", partiesRouter)
+
+app.use("/", Auth)
 
 app.listen(
     PORT, 
