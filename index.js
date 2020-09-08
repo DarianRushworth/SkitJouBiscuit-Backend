@@ -5,6 +5,7 @@ const { PORT } = require("./config/constants")
 
 const Auth = require("./routers/auth")
 const partiesRouter = require("./routers/PartiesRouter")
+const soundCloud = require("./routers/SoundCloud")
 
 const app = express()
 
@@ -22,6 +23,7 @@ if (process.env.DELAY) {
 }
 
 app.use("/parties", partiesRouter)
+app.use("/soundCloud", soundCloud)
 
 app.use("/", Auth)
 
