@@ -193,7 +193,7 @@ router.post(
 )
 
 router.get(
-    "/:id",
+    "/list/:id",
     async(req, res, next) => {
         const partyIdNeeded = parseInt(req.params.id)
         if(!partyIdNeeded){
