@@ -108,6 +108,10 @@ router.get(
             }
 
             const partyComments = await Comment.findAndCountAll({
+                include: {
+                    model: User,
+                    attributes: ["fullName"],
+                },
                 where: {
                     partyId: partyIdNeeded,
                 },
