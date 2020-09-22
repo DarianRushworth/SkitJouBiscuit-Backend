@@ -60,24 +60,25 @@ router.post(
     async(req, res, next) => {
         
         try{
-            const { email, password } = req.body
+            const emailNeeded = req.body.email
+            const passwordNeeded = req.body.password
             
-            if(!email || !password){
+            if(!emailNeeded || !passwordNeeded){
                 res.status(400).send("Please make sure to enter both Email and Password.")
             }
             
             const user = await User.findOne({
-                include: [Parties]
-            },{
                 where: {
-                    email,
+                    email: emailNeeded,
                 }
             })
-            if(!user || !bcrypt.compareSync(password, user.password)){
+            console.log("user test",user)
+            console.log("password test", bcrypt.compareSync(passwordNeeded, user.password))
+            if(!user || !bcrypt.compareSync(passwordNeeded, user.password)){
                 res.status(404).send("User with that email/password doesn't exist. Please check both inputs and retry.")
             } else {
                 delete user.dataValues["password"]
-                const token = toJWT({userid: user.id})
+                const token = toJWT({userId: user.id})
                 res.status(202).send({token, ...user.dataValues})
             }
 

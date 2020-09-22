@@ -30,7 +30,19 @@ router.post(
                 partyId: partyIdNeeded,
             })
 
-            res.status(202).send(newComment)
+            const commentFullName = await Comment.findOne({
+                include: {
+                    model: User,
+                    attributes: ["fullName"],
+                },
+                where: {
+                    input,
+                    userId: userIdNeeded,
+                    partyId: partyIdNeeded,
+                }
+            })
+
+            res.status(202).send([commentFullName])
 
         } catch(error){
             next(error)
@@ -99,7 +111,7 @@ router.get(
     authMiddleware,
     async(req, res, next) => {
         try{
-            const limit = req.query.limit || 3
+            const limit = req.query.limit || 5
             const offset = req.query.offset || 0
 
             const partyIdNeeded = parseInt(req.params.id)
@@ -119,16 +131,14 @@ router.get(
                 offset,
             })
 
-            .then((result) => {
-                if(!result){
-                    res.status(404).send("Seems there aren't any comments, please be the first.")
-                } else {
-                    res.status(202).send({
-                        comments: result.rows,
-                        total: result.count,
-                    })
-                }
-            })
+            if(!partyComments){
+                res.status(404).send("Seems there aren't any comments, please be the first.")
+            } else {
+                res.status(202).send({
+                    comments: partyComments.rows,
+                    total: partyComments.count,
+                })
+            }
 
         } catch(error){
             next(error)
