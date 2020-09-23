@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      userParty.belongsTo(models.party)
+      userParty.belongsTo(models.user)
     }
   };
   userParty.init({
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         key: "id",
       },
       onUpdate: "CASCADE",
-      onDelete: "CASCADE",
+      onDelete: "SET NULL",
     },
     partyId: {
       type: DataTypes.INTEGER,
@@ -32,8 +33,12 @@ module.exports = (sequelize, DataTypes) => {
         key: "id",
       },
       onUpdate: "CASCADE",
-      onDelete: "CASCADE",
-    }
+      onDelete: "SET NULL",
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'userParty',

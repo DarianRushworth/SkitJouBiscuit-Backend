@@ -87,17 +87,19 @@ router.get(
                 res.status(400).send("Oops seemd the URL malfunctioned, pleae go back refresh and try again.")
             }
 
-            const userFavoredParty = await Party.findByPk(partyIdNeeded,{
-                include: [User],
+            const userFavoredParty = await UserParties.findAll({
+                include: {
+                    model: User,
+                    attributes: ["fullName"],
+                },
+                where: {
+                    partyId: partyIdNeeded,
+                }
             })
             if(!userFavoredParty){
                 res.status(404).send("It seems no one likes this event, be the first!!")
             } else {
-                const users = userFavoredParty.users.map(user => {
-                    delete user.dataValues["password"]
-                    return user.dataValues
-                })
-                res.status(202).send(users)
+                res.status(202).send(userFavoredParty)
             }
 
         } catch(error){
