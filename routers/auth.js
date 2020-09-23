@@ -61,7 +61,7 @@ router.post(
         
         try{
             const emailNeeded = req.body.email
-            console.log("request", req.body)
+            
             const passwordNeeded = req.body.password
             
             if(!emailNeeded || !passwordNeeded){
@@ -73,8 +73,8 @@ router.post(
                     email: emailNeeded,
                 }
             })
-            console.log("user test",user)
-            console.log("password test", bcrypt.compareSync(passwordNeeded, user.password))
+
+            
             if(!user || !bcrypt.compareSync(passwordNeeded, user.password)){
                 res.status(404).send("User with that email/password doesn't exist. Please check both inputs and retry.")
             } else {
