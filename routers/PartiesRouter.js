@@ -57,13 +57,15 @@ router.post(
         try{
             const userIdNeeded = req.user.id
             const partyIdNeeded = parseInt(req.params.id)
-            if(!userIdNeeded || !partyIdNeeded){
+            const partyStatus = req.body.status
+            if(!userIdNeeded || !partyIdNeeded || !partyStatus){
                 res.status(400).send("Oops it seems something malfunctioned, please go back, refresh and try again.")
             }
 
             const newFavored = await UserParties.create({
                 userId: userIdNeeded,
                 partyId: partyIdNeeded,
+                status: partyStatus,
             })
             if(!newFavored){
                 res.status(404).send("it seems you couldn't favorite this party, its okay you can try again.")

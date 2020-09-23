@@ -61,6 +61,7 @@ router.post(
         
         try{
             const emailNeeded = req.body.email
+            console.log("request", req.body)
             const passwordNeeded = req.body.password
             
             if(!emailNeeded || !passwordNeeded){
