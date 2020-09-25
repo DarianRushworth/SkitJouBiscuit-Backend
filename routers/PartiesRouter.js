@@ -80,6 +80,46 @@ router.post(
 )
 
 router.get(
+    "/profile/favored",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const limit = req.query.limit || 5
+            const offset = req.query.offset || 0
+
+            const userIdNeeded = req.user.id
+            if(!userIdNeeded){
+                res.status(401).send("Oops it seems you aren't registered, please login/sign-up to continue.")
+            }
+
+            const usersStatus = await UserParties.findAndCountAll({
+                include : {
+                    model: Party,
+                    attributes: ["image", "eventName"]
+                },
+                where: {
+                    userId: userIdNeeded,
+                },
+                limit,
+                offset,
+            })
+
+            if(!usersStatus){
+                res.status(404).send("You aren't going to any parties yet, decide and get clicking.")
+            } else {
+                res.status(202).send({
+                    status: usersStatus.rows,
+                    total: usersStatus.count,
+                })
+            }
+
+        } catch(error){
+            next(error)
+        }
+    }
+)
+
+router.get(
     "/:id/favored",
     authMiddleware,
     async(req, res, next) => {
