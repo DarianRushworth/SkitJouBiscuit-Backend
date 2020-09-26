@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt")
+const e = require("express")
 const { Router } = require("express")
 const { toJWT } = require("../auth/jwt")
 const authMiddleware = require("../auth/middleware")
@@ -95,8 +96,8 @@ router.patch(
     async(req, res, next) => {
         try{
             const userIdNeeded = req.user.id
-            const userPasswordNeeded = req.user.password
-            if(!userIdNeeded || !userPasswordNeeded){
+            
+            if(!userIdNeeded){
                 res.status(400).send("Oops it seems something malfunctioned, please refresh and try again.")
             }
 
@@ -107,20 +108,40 @@ router.patch(
                 isEventOwner,
             } = req.body
 
+            const stickIt = (data) => {
+                if(data === "fullName" && !fullName){
+                    return req.user.fullName
+                } else if(data === "fullName" && fullName){
+                    return fullName
+                } else if(data === "favoriteArtist" && !favoriteArtist){
+                    return req.user.favoriteArtist
+                } else if(data === "favoriteArtist" && favoriteArtist){
+                    return favoriteArtist
+                } else if(data === "email" && !email){
+                    return req.user.email
+                } else if(data === "email" && email){
+                    return email
+                } else if(data === "isEventOwner" && !isEventOwner){
+                    return req.user.isEventOwner
+                } else if(data === "isEventOwner" && isEventOwner){
+                    return isEventOwner
+                }
+            }
+
             const updateUser = await User.update({
-                fullName,
-                favoriteArtist,
-                email,
-                isEventOwner
+                fullName: stickIt("fullName"),
+                favoriteArtist: stickIt("favoriteArtist"),
+                email: stickIt("email"),
+                isEventOwner: stickIt("isEventOwner"),
             },{
                 where:{
                     id: userIdNeeded,
                 }
             })
+            console.log("do i get here", updateUser)
 
-            const sendUser = await User.findByPk(userIdNeeded,{
-                include: [Parties]
-            })
+            const sendUser = await User.findByPk(userIdNeeded)
+            
             if(!updateUser || !sendUser){
                 res.status(404).send("It seems your profile couldn't be update, go back, refresh and try again.")
             } else {
