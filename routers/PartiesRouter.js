@@ -133,7 +133,6 @@ router.get(
 
 router.get(
     "/:id/favored",
-    authMiddleware,
     async(req, res, next) => {
         try{
             const partyIdNeeded = parseInt(req.params.id)
