@@ -11,10 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       party.hasMany(models.comment)
-      party.belongsToMany(models.user, {
-        through: "userParties",
-        foreignKey: "partyId",
-      })
+      party.hasMany(models.userParty)
     }
   };
   party.init({

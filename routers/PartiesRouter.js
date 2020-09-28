@@ -30,7 +30,19 @@ router.post(
                 partyId: partyIdNeeded,
             })
 
-            res.status(202).send(newComment)
+            const commentFullName = await Comment.findOne({
+                include: {
+                    model: User,
+                    attributes: ["fullName"],
+                },
+                where: {
+                    input,
+                    userId: userIdNeeded,
+                    partyId: partyIdNeeded,
+                }
+            })
+
+            res.status(202).send([commentFullName])
 
         } catch(error){
             next(error)
@@ -45,18 +57,85 @@ router.post(
         try{
             const userIdNeeded = req.user.id
             const partyIdNeeded = parseInt(req.params.id)
-            if(!userIdNeeded || !partyIdNeeded){
+            const partyStatus = req.body.status
+            if(!userIdNeeded || !partyIdNeeded || !partyStatus){
                 res.status(400).send("Oops it seems something malfunctioned, please go back, refresh and try again.")
             }
+
+            const alreadyFavored = await UserParties.findOne({
+                where: {
+                    userId: userIdNeeded,
+                    partyId: partyIdNeeded,
+                    status: partyStatus,
+                }
+            })
+            
+            if(alreadyFavored){
+                res.status(400).send("Sorry, you are already going/interested")
+            } else if(!alreadyFavored){
 
             const newFavored = await UserParties.create({
                 userId: userIdNeeded,
                 partyId: partyIdNeeded,
+                status: partyStatus,
             })
+
             if(!newFavored){
                 res.status(404).send("it seems you couldn't favorite this party, its okay you can try again.")
+            } 
+
+            const usersStatus = await UserParties.findByPk(newFavored.id, {
+                include : {
+                    model: Party,
+                    attributes: ["image", "eventName"]
+                },
+            })
+
+            if(!usersStatus){
+                res.status(404).send("You aren't going to any parties yet, decide and get clicking.")
             } else {
-                res.status(202).send(newFavored)
+                res.status(202).send(usersStatus)
+            }
+            }
+
+        } catch(error){
+            next(error)
+        }
+    }
+)
+
+router.get(
+    "/profile/favored",
+    authMiddleware,
+    async(req, res, next) => {
+        try{
+            const limit = req.query.limit || 5
+            const offset = req.query.offset || 0
+
+            const userIdNeeded = req.user.id
+            if(!userIdNeeded){
+                res.status(401).send("Oops it seems you aren't registered, please login/sign-up to continue.")
+            }
+
+            const usersStatus = await UserParties.findAndCountAll({
+                include : {
+                    model: Party,
+                    attributes: ["image", "eventName"]
+                },
+                where: {
+                    userId: userIdNeeded,
+                },
+                limit,
+                offset,
+            })
+
+            if(!usersStatus){
+                res.status(404).send("You aren't going to any parties yet, decide and get clicking.")
+            } else {
+                res.status(202).send({
+                    status: usersStatus.rows,
+                    total: usersStatus.count,
+                })
             }
 
         } catch(error){
@@ -67,7 +146,6 @@ router.post(
 
 router.get(
     "/:id/favored",
-    authMiddleware,
     async(req, res, next) => {
         try{
             const partyIdNeeded = parseInt(req.params.id)
@@ -75,17 +153,19 @@ router.get(
                 res.status(400).send("Oops seemd the URL malfunctioned, pleae go back refresh and try again.")
             }
 
-            const userFavoredParty = await Party.findByPk(partyIdNeeded,{
-                include: [User],
+            const userFavoredParty = await UserParties.findAll({
+                include: {
+                    model: Party,
+                    attributes: ["image", "eventName"],
+                },
+                where: {
+                    partyId: partyIdNeeded,
+                }
             })
             if(!userFavoredParty){
                 res.status(404).send("It seems no one likes this event, be the first!!")
             } else {
-                const users = userFavoredParty.users.map(user => {
-                    delete user.dataValues["password"]
-                    return user.dataValues
-                })
-                res.status(202).send(users)
+                res.status(202).send(userFavoredParty)
             }
 
         } catch(error){
@@ -99,7 +179,7 @@ router.get(
     authMiddleware,
     async(req, res, next) => {
         try{
-            const limit = req.query.limit || 3
+            const limit = req.query.limit || 5
             const offset = req.query.offset || 0
 
             const partyIdNeeded = parseInt(req.params.id)
@@ -108,6 +188,10 @@ router.get(
             }
 
             const partyComments = await Comment.findAndCountAll({
+                include: {
+                    model: User,
+                    attributes: ["fullName"],
+                },
                 where: {
                     partyId: partyIdNeeded,
                 },
@@ -115,16 +199,14 @@ router.get(
                 offset,
             })
 
-            .then((result) => {
-                if(!result){
-                    res.status(404).send("Seems there aren't any comments, please be the first.")
-                } else {
-                    res.status(202).send({
-                        comments: result.rows,
-                        total: result.count,
-                    })
-                }
-            })
+            if(!partyComments){
+                res.status(404).send("Seems there aren't any comments, please be the first.")
+            } else {
+                res.status(202).send({
+                    comments: partyComments.rows,
+                    total: partyComments.count,
+                })
+            }
 
         } catch(error){
             next(error)
@@ -193,7 +275,7 @@ router.post(
 )
 
 router.get(
-    "/:id",
+    "/list/:id",
     async(req, res, next) => {
         const partyIdNeeded = parseInt(req.params.id)
         if(!partyIdNeeded){

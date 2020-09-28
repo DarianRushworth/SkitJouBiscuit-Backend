@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon index.js",
-    "initialize": "npm i && npm run resetDB && npm run start",
+    "initialize": "npm run migrate && npm run seed",
     "dev": "env DELAY=1000 npx nodemon .",
     "initdev": "npm run migrate && npm run seed",
     "migrate": "npx sequelize-cli db:migrate",

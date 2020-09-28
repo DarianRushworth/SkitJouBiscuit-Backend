@@ -7,24 +7,28 @@ module.exports = {
         {
           userId: 1,
           partyId: 4,
+          status: "going",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           userId: 1,
           partyId: 7,
+          status: "going",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           userId: 2,
           partyId: 5,
+          status: "interested",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           userId: 2,
           partyId: 7,
+          status: "interested",
           createdAt: new Date(),
           updatedAt: new Date(),
         }

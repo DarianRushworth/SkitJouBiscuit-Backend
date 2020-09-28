@@ -6,10 +6,10 @@ module.exports = {
       "parties", [
         {
           eventName: "Mushroom Valley",
-          image: "",
+          image: "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/82517952_1494712977353546_4344316577605222400_o.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=hfVR_c-FI7oAX8MF8zE&_nc_ht=scontent-amt2-1.xx&oh=e3374921008a339bd9513e4426711595&oe=5F7E8EF8",
           month: "October 2020",
           duration: "02nd - 04th",
-          description: `
+          description:`
           Mushroom Valley is more than just a party, it is a community, a place where you can grow, learn 
           and connect with other like minded people. A place where you can come and be revitalised and re-energised 
           to go out and take on the "real" world. There are plenty of workshops for the young and old in the 
@@ -20,7 +20,7 @@ module.exports = {
           There are a few things we at Mushroom Valley Productions are extremely passionate about. One thing is providing 
           a safe and respectful environment for the whole family from young to old.
           `,
-          rules: `
+          rules:`
           There are no eftpos facilities on site. Make sure you bring cash.
           - We are working with council and local police and will have security on site.
           - We will also be offering a new service this year where for a small fee you will be able to be 
@@ -38,17 +38,17 @@ module.exports = {
           -There will be free camping from friday 12pm until 12pm monday
           `,
           continent: "Australia",
-          country: "Australia",
+          country:"AU",
           covidClosure: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           eventName: "Strawberry Fields",
-          image: "",
+          image: "https://scontent-amt2-1.xx.fbcdn.net/v/t31.0-8/1410912_676354625728315_619552401_o.jpg?_nc_cat=105&_nc_sid=19026a&_nc_ohc=YPXKbmnIJ6EAX_VRRO3&_nc_ht=scontent-amt2-1.xx&oh=c0822fcaaf3000fff9ea446f5f60c053&oe=5F7EF123",
           month: "November 2020",
           duration: "19th - 22nd",
-          description: `
+          description:`
           The smiles, the sunburn, the sky and the clouds. The strangers, the friends - both new found and old. 
           That long drive into the unknown, followed by dancing, and inevitable laughter. Embarking on adventures 
           through the ghost gums, discovering a bamboo playground, an oriental tea lounge, a jazz quintet improvising 
@@ -56,7 +56,7 @@ module.exports = {
           those quite moments of reflection. These are the things that will define the greatest weekend of your life. 
           Welcome to the wild world of Strawberry Fields.`,
           continent: "Australia",
-          country: "Australia",
+          country:"AU",
           city: "Victoria",
           covidClosure: true,
           createdAt: new Date(),
@@ -64,10 +64,10 @@ module.exports = {
         },
         {
           eventName: "Rabbits Eat Lettuce",
-          image: "",
+          image: "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/90202062_4245074525518321_5374062513266622464_o.jpg?_nc_cat=105&_nc_sid=340051&_nc_ohc=EIxRQVt-_nQAX-rgDRc&_nc_ht=scontent-amt2-1.xx&oh=2f4e43ad97e6e4a9da8db642f5289017&oe=5F7ED3C1",
           month: "April 2021",
           duration: "01st - 04th",
-          description: `
+          description:`
           We believe that festivals can be a powerful catalyst for self-development, healing and social change. 
           We want to provide an experience that enriches your soul at the same time as giving you a place to party and socialize.
           Rabbits Eat Lettuce is a place of Freedom, Love & Dance Music. Camp in a beautiful natural environment and form a 
@@ -78,7 +78,7 @@ module.exports = {
           the stars. The event has grown a lot since it’s humble beginnings as a forest dance party but still holds the same 
           essence of freedom and unique mystery it started with.
           `,
-          accomodation: `
+          accomodation:`
           Camping:
           Camping out under the stars for four days with your best mates is one of the aspects that make Rabbits Eat Lettuce so special.  
           Camping for the full 4 days is included in the cost of your festival ticket and is available from Thursday 9:30am until 
@@ -97,11 +97,11 @@ module.exports = {
           That way you can meet other people in the same situation and form connections quickly. There will be a community lounge space 
           for all solo campers to chill.
           `,
-          lineUp: `
+          lineUp:`
           OPIOU || LAI E NI I E TUFF GUY || SHOCKONE || GROUCH || MOIEZ || SENSEIN I || ZEKE BEAIS || GODLANDS || MADE IN PARIS || OKA || WONGO || TRUTH || SIACE CADE I || SPOONBILL || LO’99 || K+LAB || FLOWIDUS and many more...
           `,
           ticketLink: "https://www.rabbitseatlettuce.com.au/?fbclid=IwAR1aLulsmyIinqnlSLolTIJJI4DbjLjGRKM84gvkvSor8jymPUaMoJ0PdPs",
-          rules: `
+          rules:`
           No fires
           No glass
           No anti social behavior
@@ -110,24 +110,24 @@ module.exports = {
           Must bring photo ID & Festival Ticket (or cash) to enter
           Is an  18+ event (anyone under 18 MUST arrive with a legal parent or guardian)
           `,
-          extraInfo: `
+          extraInfo:`
           Hot Showers will be on site.  We know you like to get fresh and clean after a big night partying!  Shower use is charged at $2 
           per minute, which helps cover the cost of the shower truck rental, electricity, LPG, water and servicing. 
           Shower Facilities will accept $2 Coins so be sure to bring enough for the 4 days.
           `,
           covidClosure: false,
           continent: "Australia",
-          country: "Australia",
+          country:"AU",
           city: "Kingham QLD",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          eventName: "Echo Gatherings - Elememts of Life",
-          image: "",
+          eventName: "Echo Gatherings",
+          image: "https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/97002927_957936047969890_6362001486376861696_o.jpg?_nc_cat=110&_nc_sid=e3f864&_nc_ohc=svsx_td4-xkAX_Tmr_C&_nc_ht=scontent-ams4-1.xx&oh=86a4640df9660b974cfe42c45eb51ac8&oe=5F818C82",
           month: "November 2020",
           duration: "27th - 30th",
-          description: `
+          description:`
           We have thus far individually celebrated all the Elements of Life itself through our Echo Gatherings
           Earth - Fire - Water - Air and finally we have arrived at ECHO "ELEMENTS OF LIFE". These very Elements create the 
           very beautiful Universe we all Live Love Laugh & Play in. With THIS ECHO GATHERING we are going to weave all these fundamentals 
@@ -139,12 +139,12 @@ module.exports = {
           "WE THE PEOPLE HAVE THE POWER TO MAKE THIS LIFE FREE AND BEAUTIFUL..TO MAKE THIS LIFE
           A WONDERFUL MAGICAL ADVENTURE IN UNITY WE SHALL ACHIEVE THIS POWER ": “THE ELEMENTS OF LIFE”
           `,
-          accomodation: `
+          accomodation:`
           6 SLEEPER CHALETS : R3500.00 Fri – Mon ( 9am Check Out)
           4 SLEEPER CHALETS: R2500.00 Fri – Mon ( 9am Check Out)
           Contact Dan:+27 726937491
           `,
-          lineUp: `
+          lineUp:`
           AI MATHESDORF // PSY MANTIS // JUKEBOX // SILO //
           DELIRIANT // PLUSMINUS // CAPES // TUNE RAIDER //
           KILLER B // HEGCHICK // DAN SCOT // SKITZO // AHEE //
@@ -154,7 +154,7 @@ module.exports = {
           NIC BEST // DANNYBOY // INTROPIN // SIREN // FEEL GOOD INC
           `,
           ticketLink: "https://www.howler.co.za/events/echo-gatherings-elements-of-life-a3fd?fbclid=IwAR0Yg8h1Kyi_9j4iut_somr3lx8GoVXt1Ol0ZSW9lkc2XqzJC4gXq0hjzfI",
-          extraInfo: `
+          extraInfo:`
           Shaded dance-floor
           Lush Grass Camping
           Fresh River Swimming
@@ -169,17 +169,17 @@ module.exports = {
           `,
           covidClosure: false,
           continent: "Africa",
-          country: "South Africa",
+          country:"ZA",
           city: "George",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           eventName: "Vortex Open Source",
-          image: "",
+          image: "https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/117170723_10157946005938778_2781692619919578143_o.jpg?_nc_cat=104&_nc_sid=e3f864&_nc_ohc=XGXKVLa2NpEAX9kwqHE&_nc_ht=scontent-ams4-1.xx&oh=2a64aeab82ba6385b6b8f269f158d291&oe=5F7EA603",
           month: "December 2020",
           duration: "10th - 14th",
-          description: `
+          description:`
           Vortex Open Source celebrates the summer solstice: a time of ascension, passion, and new beginnings. It is the time for 
           inviting in the light, the fire of creativity and transformation. Our team of visionary artists and producers collaborate 
           through an Open Source style of ethics of sharing the collective wisdom to support our conscious evolution in giving without 
@@ -190,24 +190,24 @@ module.exports = {
           intentions, we hope to unlock our collective potential as a catalyst for radical change. These may just be the seeds of change: but 
           every element, every interaction, every smile, and every frequency has the potential to manifest into more.
           `,
-          accomodation: `
+          accomodation:`
           Those of you who purchased festival tickets from either Quicket or an outlet/ambassador there is shaded camping in the inspiringly 
           beautiful forest along the many rivers and a demarcated, secure area to park your car. Pitch your tent and get creative – this 
           will be your home for the whole five days! Bring your hammocks, fairy lights, and swimming gear, and make yourself comfortable.
           `,
           covidClosure: true,
           continent: "Africa",
-          country: "South Africa",
+          country:"ZA",
           city: "Cape Town",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           eventName: "Earth Frequency Festival",
-          image: "",
+          image: "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/107567382_3307423459315069_618298316620483963_o.jpg?_nc_cat=101&_nc_sid=e3f864&_nc_ohc=_jNMWUs85y0AX8HMhDH&_nc_ht=scontent-amt2-1.xx&oh=12855b6b2a55d36e90ec47586ce49440&oe=5F806B01",
           month: "February 2021",
           duration: "12th - 15th",
-          description: `
+          description:`
           Earth Frequency Festival is a music, arts, lifestyle and environmental festival based in South-East Queensland, Australia, 
           with a strong focus on arts, education, healing and community spirit. While drawing from many cultural niches such as transformational 
           festival, tribal gathering, doof and boutique festival, the aim of Earth Frequency Festival is to go beyond these traditional tags 
@@ -222,7 +222,7 @@ module.exports = {
           from Ipswich. Nurtured by the setting of the beautiful Australian outdoors, we gather together once a year to celebrate life with music, 
           art and other creative forms, and to educate, connect, heal and inspire.  For those attending, it may just be the defining weekend of your summer!
           `,
-          accomodation: `
+          accomodation:`
           General camping, your festival ticket includes camping in the General Camping campsite for the duration of the festival.   
           For general camping, 
           you may arrive from 9am Friday 12th February and you must leave the festival venue by midday Tuesday 16th February.
@@ -236,7 +236,7 @@ module.exports = {
           `,
           lineUp: "TBA",
           ticketLink: "https://www.earthfrequency.com.au/tickets",
-          rules: `
+          rules:`
           No Pets – especially dogs.
           No Glass or Excessive amounts of Alcohol.
           No Illegal Substances.
@@ -253,18 +253,17 @@ module.exports = {
           `,
           covidClosure: false,
           continent: "Australia",
-          country: "Australia",
+          country:"AU",
           city: "Brisbane",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           eventName: "Son Libre Festival",
-          image: "",
+          image: "https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/57267644_1028272740715651_173876365089570816_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_ohc=pEyyFtOEC3AAX-eA_Im&_nc_ht=scontent-amt2-1.xx&oh=80e90ee75979150c1ed5240695556c03&oe=5F7DD563",
           month: "June 2021",
           duration: "10th - 13th",
           description:`
-          Description:
           We propose a 4-day and 3 night trip where the music hardly ever stops! Between the Groove Zone and the Vibe Circle, you are going to 
           enjoy yourself if you are true electronic music lover. More than just a festival, it’s a whole experience that’ll change you forever!
           We let you circulate freely with your food and alcohol, like many big festivals such as The Boom and The Ozora. These festivals inspire us a 
@@ -272,17 +271,17 @@ module.exports = {
           `,
           covidClosure: true,
           continent: "Europe",
-          country: "France",
+          country:"FR",
           city: "Gard",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           eventName: "Burning Mountain Festival",
-          image: "",
+          image: "https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/74674409_3433896756635505_6251181172542406656_o.jpg?_nc_cat=100&_nc_sid=e3f864&_nc_ohc=EHNpa1DwFB8AX8ZJdxK&_nc_ht=scontent-ams4-1.xx&oh=1d50768817c86d96fe5492a1fa76790f&oe=5F7ECA07",
           month: "June 2021",
           duration: "24th - 27th",
-          description: `
+          description:`
           Burning Mountain Festival is a four days psychedelic experience, combining art and music, in the magic surroundings of the Swiss Alps.
           The festival has one of the most amazing lineups, presenting year after year some of the finest Progressive Psytrances from all over the world.
           Light Shows and decorations will give you a fully immersive experience off the beaten track. Moreover flamethrowers, dozens of performance artists 
@@ -290,17 +289,17 @@ module.exports = {
           The unique location lies in the Engadin Valley, one of the highest inhabited valleys of Europe, next to the River Inn and surrounded with trees. 
           The village Zernez is within 10-15 minutes walking distance and offers top infrastructure like hotels, restaurants, ATM machines and shops.
           `,
-          accomodation: `
+          accomodation:`
           Camping during the festival is included in the festival ticket, so all you need is basic camping gear, like a tent, a camping pad and a head 
           torch (so useful in the night).
           Alternatively, you can book nearby hotels and apartments using the map below or visit booking.com
           `,
-          lineUp: `
+          lineUp:`
           Animato / Anunnaki Project / Astrix / Audiomatic / Audiosource / Bengani & Akasha Nasha / Blastoyz / BLiSS / Boot Sequence / Brahma & Blurryface / 
           Cornflakes 3D / CR3WFX / D-Nation / Delta Dust & Pected / Fabio Fusco / Flash Jack / Gabun / Gaudium / Ghost Rider / Ground Zero / Harlekin / 
           Hatikwa / Jumpix / Level Up / Liquid Soul / Luro / Mark Main / Metronome / Narxz /Novi Maschilton / Omiki / Outsiders / Paint It Black / Predator / 
           Psyjag / Reality Test / RITMO / Simex / Sputnik / Synthex / TERRA / Vini Vici`,
-          ticketLink: `
+          ticketLink:`
           Festival ticket: 
           https://www.starticket.ch/de/tickets/burning-mountain-festival-2020-20200625-1800-20200626-1700-festivalgelande-praschitsch-zernez
           
@@ -308,17 +307,17 @@ module.exports = {
           https://www.starticket.ch/de/tickets/burning-mountain-festival-2020-20200625-1800-20200626-1700-festivalgelande-praschitsch-zernez`,
           covidClosure: false,
           continent: "Europe",
-          country: "Switzerland",
+          country:"CH",
           city: "Zernez",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           eventName: "Antaris Project",
-          image: "",
+          image: "https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/99377923_3908008425908378_1152986508936871936_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=DikvX4DUT4IAX8M-7Sc&_nc_ht=scontent-ams4-1.xx&oh=132fa6077c29cf9da20884dbadecc44a&oe=5F7E35D6",
           month: "June 2021",
           duration: "25th - 28th",
-          description: `
+          description:`
           Antaris Project is one of the longest running Psytrance Festivals in the world, with thousands of visitors each year from all over the world. 
           Antaris is the mother of the German Psytrance Festivals. The festival is located at the airfield Otto Lilienthal near Stölln city.
           ANT-ARIS = AGAINST WAR! For Peace, Friendship and Freedom!
@@ -330,7 +329,7 @@ module.exports = {
           ticketLink: "https://antaris-project.ebtix.de/event/R6QC9Z/show_tickets_in_page",
           covidClosure: false,
           continent: "Europe",
-          country: "Germany",
+          country:"DE",
           city: "Stöllin",
           createdAt: new Date(),
           updatedAt: new Date(),

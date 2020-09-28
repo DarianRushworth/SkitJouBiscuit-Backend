@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt")
+const e = require("express")
 const { Router } = require("express")
 const { toJWT } = require("../auth/jwt")
 const authMiddleware = require("../auth/middleware")
@@ -60,24 +61,26 @@ router.post(
     async(req, res, next) => {
         
         try{
-            const { email, password } = req.body
+            const emailNeeded = req.body.email
             
-            if(!email || !password){
+            const passwordNeeded = req.body.password
+            
+            if(!emailNeeded || !passwordNeeded){
                 res.status(400).send("Please make sure to enter both Email and Password.")
             }
             
             const user = await User.findOne({
-                include: [Parties]
-            },{
                 where: {
-                    email,
+                    email: emailNeeded,
                 }
             })
-            if(!user || !bcrypt.compareSync(password, user.password)){
+
+            
+            if(!user || !bcrypt.compareSync(passwordNeeded, user.password)){
                 res.status(404).send("User with that email/password doesn't exist. Please check both inputs and retry.")
             } else {
                 delete user.dataValues["password"]
-                const token = toJWT({userid: user.id})
+                const token = toJWT({userId: user.id})
                 res.status(202).send({token, ...user.dataValues})
             }
 
@@ -93,8 +96,8 @@ router.patch(
     async(req, res, next) => {
         try{
             const userIdNeeded = req.user.id
-            const userPasswordNeeded = req.user.password
-            if(!userIdNeeded || !userPasswordNeeded){
+            
+            if(!userIdNeeded){
                 res.status(400).send("Oops it seems something malfunctioned, please refresh and try again.")
             }
 
@@ -105,20 +108,39 @@ router.patch(
                 isEventOwner,
             } = req.body
 
+            const stickIt = (data) => {
+                if(data === "fullName" && !fullName){
+                    return req.user.fullName
+                } else if(data === "fullName" && fullName){
+                    return fullName
+                } else if(data === "favoriteArtist" && !favoriteArtist){
+                    return req.user.favoriteArtist
+                } else if(data === "favoriteArtist" && favoriteArtist){
+                    return favoriteArtist
+                } else if(data === "email" && !email){
+                    return req.user.email
+                } else if(data === "email" && email){
+                    return email
+                } else if(data === "isEventOwner" && !isEventOwner){
+                    return req.user.isEventOwner
+                } else if(data === "isEventOwner" && isEventOwner){
+                    return isEventOwner
+                }
+            }
+
             const updateUser = await User.update({
-                fullName,
-                favoriteArtist,
-                email,
-                isEventOwner
+                fullName: stickIt("fullName"),
+                favoriteArtist: stickIt("favoriteArtist"),
+                email: stickIt("email"),
+                isEventOwner: stickIt("isEventOwner"),
             },{
                 where:{
                     id: userIdNeeded,
                 }
             })
 
-            const sendUser = await User.findByPk(userIdNeeded,{
-                include: [Parties]
-            })
+            const sendUser = await User.findByPk(userIdNeeded)
+            
             if(!updateUser || !sendUser){
                 res.status(404).send("It seems your profile couldn't be update, go back, refresh and try again.")
             } else {

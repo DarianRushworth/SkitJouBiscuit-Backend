@@ -16,7 +16,7 @@ module.exports = {
           key: "id"
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        onDelete: "SET NULL",
       },
       partyId: {
         type: Sequelize.INTEGER,
@@ -26,7 +26,11 @@ module.exports = {
           key: "id"
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

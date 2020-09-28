@@ -1,6 +1,7 @@
 const User = require("../models").user
 const { toData } = require("./jwt")
 const Parties = require("../models").party
+const status = require("../models").userParty
 
 async function auth(req, res, next) {
   const auth =
@@ -14,8 +15,8 @@ async function auth(req, res, next) {
 
   try {
     const data = toData(auth[1])
-    const user = await User.findByPk(data.userid,{
-      include: [Parties]
+    const user = await User.findByPk(data.userId,{
+      include: [status]
     })
     if (!user) {
       return res.status(404).send({ message: "User does not exist" })
