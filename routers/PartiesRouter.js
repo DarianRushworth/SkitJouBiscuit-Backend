@@ -62,6 +62,18 @@ router.post(
                 res.status(400).send("Oops it seems something malfunctioned, please go back, refresh and try again.")
             }
 
+            const alreadyFavored = await UserParties.findOne({
+                where: {
+                    userId: userIdNeeded,
+                    partyId: partyIdNeeded,
+                    status: partyStatus,
+                }
+            })
+            
+            if(alreadyFavored){
+                res.status(400).send("Sorry, you are already going/interested")
+            } else if(!alreadyFavored){
+
             const newFavored = await UserParties.create({
                 userId: userIdNeeded,
                 partyId: partyIdNeeded,
@@ -70,7 +82,7 @@ router.post(
 
             if(!newFavored){
                 res.status(404).send("it seems you couldn't favorite this party, its okay you can try again.")
-            }
+            } 
 
             const usersStatus = await UserParties.findByPk(newFavored.id, {
                 include : {
@@ -83,6 +95,7 @@ router.post(
                 res.status(404).send("You aren't going to any parties yet, decide and get clicking.")
             } else {
                 res.status(202).send(usersStatus)
+            }
             }
 
         } catch(error){
