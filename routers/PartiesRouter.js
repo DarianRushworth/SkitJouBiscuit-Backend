@@ -67,10 +67,22 @@ router.post(
                 partyId: partyIdNeeded,
                 status: partyStatus,
             })
+
             if(!newFavored){
                 res.status(404).send("it seems you couldn't favorite this party, its okay you can try again.")
+            }
+
+            const usersStatus = await UserParties.findByPk(newFavored.id, {
+                include : {
+                    model: Party,
+                    attributes: ["image", "eventName"]
+                },
+            })
+
+            if(!usersStatus){
+                res.status(404).send("You aren't going to any parties yet, decide and get clicking.")
             } else {
-                res.status(202).send(newFavored)
+                res.status(202).send(usersStatus)
             }
 
         } catch(error){
@@ -131,8 +143,8 @@ router.get(
 
             const userFavoredParty = await UserParties.findAll({
                 include: {
-                    model: User,
-                    attributes: ["fullName"],
+                    model: Party,
+                    attributes: ["image", "eventName"],
                 },
                 where: {
                     partyId: partyIdNeeded,
