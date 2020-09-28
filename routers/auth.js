@@ -138,7 +138,6 @@ router.patch(
                     id: userIdNeeded,
                 }
             })
-            console.log("do i get here", updateUser)
 
             const sendUser = await User.findByPk(userIdNeeded)
             
